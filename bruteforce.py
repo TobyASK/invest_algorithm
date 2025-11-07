@@ -1,8 +1,11 @@
 from action import Action
 import sys
 
+# Stockage du nom du fichier contenant les actions en argument
+# avec une valeur par défaut
 file = sys.argv[1] if len(sys.argv) > 1 else "action_list.csv"
 
+# Charger les actions
 with open(file) as f:
     action_list = []
     f.readline()  # Skipper la ligne d'en-tête
