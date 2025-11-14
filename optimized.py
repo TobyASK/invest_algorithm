@@ -19,6 +19,16 @@ budget = 500
 
 # Algorithme du sac-à-dos
 def knapsack(actions, budget):
+    """
+    Algorithme optimisé (programmation dynamique).
+
+    Args:
+        actions: Liste des actions disponibles
+        budget: Budget maximum
+
+    Returns:
+        tuple: (profit_maximal, liste_actions_selectionnees)
+    """
     n = len(actions)
     budget_cents = int(budget * 100)  # Convertir en centimes
     # Initialiser la table DP : dp[i][w] = profit maximal avec les i premières
@@ -43,20 +53,26 @@ def knapsack(actions, budget):
     return dp[n][budget_cents], selected
 
 
-# Exécution
-max_profit, selected_actions = knapsack(actions, budget)
+def main():
+    """Fonction principale pour exécution en ligne de commande."""
+    # Exécution
+    max_profit, selected_actions = knapsack(actions, budget)
 
-# Affichage des résultats
-# On affiche le profit max en euros avec centimes
-print(f"Profit maximal (2 ans): {max_profit:.2f} €")
-# On affiche le nombre d'actions selectionnées
-print(f"Nombre d'actions: {len(selected_actions)}")
-# On affiche le coût total avec la somme des coûts de chaque action
-print(f"Coût total: {sum(a.cost for a in selected_actions):.2f} €")
+    # Affichage des résultats
+    # On affiche le profit max en euros avec centimes
+    print(f"Profit maximal (2 ans): {max_profit:.2f} €")
+    # On affiche le nombre d'actions selectionnées
+    print(f"Nombre d'actions: {len(selected_actions)}")
+    # On affiche le coût total avec la somme des coûts de chaque action
+    print(f"Coût total: {sum(a.cost for a in selected_actions):.2f} €")
 
-# On affiche chacunes des actions selectionnées
-print("\nActions sélectionnées:")
-for action in selected_actions:
-    profit = action.calculate_profit()
-    # On affiche le nom, le coût et le profit en euros
-    print(f"- {action.name}: {action.cost}€ → {profit:.2f}€")
+    # On affiche chacunes des actions selectionnées
+    print("\nActions sélectionnées:")
+    for action in selected_actions:
+        profit = action.calculate_profit()
+        # On affiche le nom, le coût et le profit en euros
+        print(f"- {action.name}: {action.cost}€ → {profit:.2f}€")
+
+
+if __name__ == "__main__":
+    main()
